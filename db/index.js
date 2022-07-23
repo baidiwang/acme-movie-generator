@@ -12,6 +12,21 @@ const Movie = conn.define('movie', {
       }
 });
 
+Movie.addHook('beforeValidate', (movie) => {
+    if (movie.rating < 1 || movie.rating > 5) {
+        throw new Error ('Rating must be between 1 and 5');
+    }
+}); 
+
+
+Movie.addHook('beforeUpdate', (movie) => {
+    if (movie.rating < 1 || movie.rating > 5) {
+        throw new Error ('Rating must be between 1 and 5');
+    }
+}); 
+
+
+
 module.exports = {
     conn,
     Movie

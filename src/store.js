@@ -1,8 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import logger from 'redux-looger';
+import logger from 'redux-logger';
 import axios from 'axios';
 import thunk from 'redux-thunk';
-import { combineTableNames } from 'sequelize/types/utils';
+
 
 const initialState = {
     movies: []
@@ -30,14 +30,12 @@ const reducer = combineReducers({
 
 const store = createStore( reducer, applyMiddleware(thunk, logger));
 
-
 const setMovies = () => {
     return async(dispatch) => {
        const movies = (await axios.get('/api/movies')).data;
        dispatch({ type: 'SET_MOVIES', movies });
- )
+    }
 }
-
 
 const createMovie = (movie) => {
     return async(dispatch) => {
@@ -46,7 +44,7 @@ const createMovie = (movie) => {
     }
 }
 
-const upadteMovie = (movie) => {
+const updateMovie = (movie) => {
     return async(dispatch) => {
         movie = (await axios.put(`/api/movies/${movie.id}`, movie)).data;
         dispatch({ type: 'UPADTE_MOVIE', movie });
@@ -61,5 +59,4 @@ const deleteMovie = (movie) => {
 }
 
 export{ setMovies, deleteMovie, createMovie, updateMovie }; 
-export default sotre; 
-
+export default store; 

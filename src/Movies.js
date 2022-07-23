@@ -47,4 +47,4 @@ const myStateDispatch = (dispatch) => {
     }
 }
 
-export defalut conncet(myStateMovies, myStateDispatch)(Movies);
+export default connect(myStateMovies, myStateDispatch)(Movies);

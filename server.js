@@ -5,7 +5,6 @@ const path = require('path');
 const db = require('./db');
 const { conn, Movie } = db;
 const { faker } = require('@faker-js/faker');
-const { connect } = require('http2');
 
 
 app.use(express.json());
@@ -21,12 +20,12 @@ app.use((err, req, res, next)=> {
 
 
 app.post('/api/movies', async(req, res, next) => {
-try{
+  try{
   res.status(201).send(await Movie.create(req.body)); 
-}
-catch(ex){
+  }
+  catch(ex){
   next(ex);
-}
+  }
 })
 
 
@@ -53,7 +52,6 @@ app.delete('/api/movies/:id', async(req, res, next) => {
     next(ex);
    }
 })
-
 
 
 app.get('/api/movies', async(req, res, next)=> {

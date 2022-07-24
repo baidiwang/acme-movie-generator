@@ -47,14 +47,14 @@ const createMovie = (movie) => {
 const updateMovie = (movie) => {
     return async(dispatch) => {
         movie = (await axios.put(`/api/movies/${movie.id}`, movie)).data;
-        dispatch({ type: 'UPADTE_MOVIE', movie });
+        dispatch({ type: 'UPDATE_MOVIE', movie });
     }
 }
 
 const deleteMovie = (movie) => {
     return async(dispatch) => {
         await axios.delete(`/api/movies/${movie.id}`);
-        dispatch({ type: 'DELETE_MOVIE', movie});
+        dispatch({ type: 'DELETE_MOVIE', movie });
     }
 }
 

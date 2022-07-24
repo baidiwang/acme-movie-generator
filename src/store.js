@@ -5,7 +5,8 @@ import thunk from 'redux-thunk';
 
 
 const initialState = {
-    movies: []
+    movies: [],
+    rating: []
 };
 
 const movieReducer = ( state = [], action) => {

@@ -31,7 +31,7 @@ app.post('/api/movies', async(req, res, next) => {
 
 app.put('/api/movies/:id', async(req, res, next) => {
   try{ 
-    const movie = Movie.findByPk(req.params.id);
+    const movie =  await Movie.findByPk(req.params.id);
     await movie.update(req.body);
     res.send(movie);
   }
@@ -68,8 +68,8 @@ const init = async() => {
   try{
     await conn.sync({ force: true });
     const [movieA, movieB, movieC] = await Promise.all(
-      ['MovieA','MovieB','MovieC'].map(name => {
-        return Movie.create({ name })
+      [['MovieA', 2],['MovieB', 3],['MovieC', 4]].map(nameAndRating => {
+        return Movie.create({ name: nameAndRating[0], rating: nameAndRating[1] }) 
       })
     );
 
